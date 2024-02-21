@@ -30,7 +30,7 @@ const Loader = () => {
             style={{ width: `${width}%`, backgroundColor: barColor }}
           ></div>
         </div>
-        <p className="ml-2">{Math.round(progress)}%</p>
+        <p className="ml-2 text-white">{Math.round(progress)}%</p>
       </div>
     </Html>
   );

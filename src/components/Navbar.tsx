@@ -5,15 +5,25 @@ const Navbar = () => {
     <header className="header">
       <NavLink
         to="/"
-        className="w-10 h-10 rounded-full bg-white items-center justify-center flex font-bold shadow-md"
+        className={({ isActive }) =>
+          `${
+            isActive
+              ? "text-black border-black bg-[#C4A1FF]"
+              : "text-white border-black bg-[#035de4]"
+          } flex cursor-pointer items-center rounded-full border-2  px-5 py-3 font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none`
+        }
       >
-        <p className="blue-gradient_text">NA</p>
+        NA
       </NavLink>
-      <nav className="flex text-lg gap-7 font-medium">
+      <nav className="flex text-lg gap-7 font-medium ">
         <NavLink
           to="/about"
           className={({ isActive }) =>
-            isActive ? "text-blue-500" : "text-white"
+            `${
+              isActive
+                ? "text-black border-black bg-[#C4A1FF]"
+                : "text-white border-black bg-[#035de4]"
+            } flex cursor-pointer items-center rounded-full border-2  px-5 py-3 font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none`
           }
         >
           About
@@ -21,7 +31,11 @@ const Navbar = () => {
         <NavLink
           to="/projects"
           className={({ isActive }) =>
-            isActive ? "text-blue-500" : "text-white"
+            `${
+              isActive
+                ? "text-black border-black bg-[#C4A1FF]"
+                : "text-white border-black bg-[#035de4]"
+            } flex cursor-pointer items-center rounded-full border-2  px-5 py-3 font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none`
           }
         >
           Projects
