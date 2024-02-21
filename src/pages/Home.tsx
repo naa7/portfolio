@@ -3,73 +3,67 @@ import { Canvas } from "@react-three/fiber";
 import Loader from "../components/Loader";
 // import Island from "../models/Island";
 import Sky from "../models/Sky";
+import Earth from "../models/Earth";
 // import Bird from "../models/Bird";
-// import Plane from "../models/Plane";
+import Plane from "../models/Plane";
 import HomeInfo from "../components/HomeInfo";
-import VisionPro from "../models/VisionPro";
+// import VisionPro from "../models/VisionPro";
 
 const Home = () => {
   const [isRotating, setIsRotating] = useState(false);
   const [currentStage, setCurrentStage] = useState<number | null>(1);
-  const adjustIslandForScreenSize = () => {
-    let screenScale: [number, number, number] = [1, 1, 1];
-    let screenPosition: [number, number, number] = [0, -6.5, -43];
+
+  const adjustEarthForScreenSize = () => {
+    let screenScale: [number, number, number] = [2.5, 2.5, 2.5];
+    let screenPosition: [number, number, number] = [0, -7.5, -43];
     let rotation: [number, number, number] = [0.1, 4.7, 0];
 
     if (window.innerWidth < 768) {
-      screenScale = [0.9, 0.9, 0.9];
+      screenScale = [2, 2, 2];
       screenPosition = [0, -6.5, -43];
     } else {
-      screenScale = [1, 1, 1];
+      screenScale = [2.5, 2.5, 2.5];
     }
     return [screenScale, screenPosition, rotation];
   };
 
-  // const adjustPlaneForScreenSize = () => {
-  //   let screenScale: [number, number, number] = [3, 3, 3];
-  //   let screenPosition: [number, number, number] = [0, -4, -4];
+  const adjustPlaneForScreenSize = () => {
+    let screenScale: [number, number, number] = [2, 2, 2];
+    let screenPosition: [number, number, number] = [0, -1.5, -4];
 
-  //   if (window.innerWidth < 768) {
-  //     screenScale = [1.5, 1.5, 1.5];
-  //     screenPosition = [0, -1.5, 0];
-  //   }
-  //   return [screenScale, screenPosition];
-  // };
+    if (window.innerWidth < 768) {
+      screenScale = [1, 1, 1];
+      screenPosition = [0, -1, -2];
+    }
+    return [screenScale, screenPosition];
+  };
 
-  // const adjustBirdForScreenSize = () => {
-  //   let screenScale: [number, number, number] = [3, 3, 3];
-  //   let screenPosition: [number, number, number] = [0, -4, -4];
+  const [earthScale, earthPosition, earthRotation] = adjustEarthForScreenSize();
+  const [planeScale, planePosition] = adjustPlaneForScreenSize();
 
-  //   if (window.innerWidth < 768) {
-  //     screenScale = [1.5, 1.5, 1.5];
-  //     screenPosition = [0, -1.5, 0];
-  //   }
-  //   return [screenScale, screenPosition];
-  // };
-
-  const [islandScale, islandPosition, islandRotation] =
-    adjustIslandForScreenSize();
-  // const [planeScale, planePosition] = adjustPlaneForScreenSize();
-  const [skyScale, skyPosition, skyRotation] = adjustIslandForScreenSize();
-  // const [birdScale, birdPosition] = adjustBirdForScreenSize();
   return (
     <section
       className={`w-full h-screen relative ${
         isRotating ? "cursor-grabbing" : "cursor-grab"
       }`}
     >
-      <div className="absolute top-28 left-0 right-0 z-10 flex  items-center justify-center text-white">
-        {currentStage && <HomeInfo currentStage={currentStage} />}
+      <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
+        {currentStage && (
+          <HomeInfo
+            currentStage={currentStage}
+            setCurrentStage={setCurrentStage}
+          />
+        )}
       </div>
       <Canvas
-        className="w-full h-screen relative bg-black-500"
+        className="w-full h-screen relative bg-zinc-800"
         camera={{ near: 0.1, far: 1000 }}
       >
         <Suspense fallback={<Loader />}>
           <directionalLight
-            position={[5, 10, 5]}
-            intensity={3}
             castShadow
+            position={[0, 0, 1]}
+            intensity={2}
             shadow-mapSize-width={1024}
             shadow-mapSize-height={1024}
             shadow-camera-far={50}
@@ -77,7 +71,7 @@ const Home = () => {
             shadow-camera-right={10}
             shadow-camera-top={10}
             shadow-camera-bottom={-10}
-          />{" "}
+          />
           <ambientLight intensity={1} />
           <hemisphereLight
             color="#b1e1ff"
@@ -99,36 +93,22 @@ const Home = () => {
             color="#FFD700"
           />
           <pointLight position={[0, 5, 0]} intensity={2} />
-          <Sky
-            position={skyPosition}
-            scale={skyScale}
-            rotation={skyRotation}
-            isRotating={isRotating}
-          />
-          {/* <Bird position={birdPosition} scale={birdScale} />  */}
-          {/* <Island
-            position={islandPosition}
-            scale={islandScale}
-            rotation={islandRotation}
+          <Earth
+            position={earthPosition}
+            scale={earthScale}
+            rotation={earthRotation}
             isRotating={isRotating}
             setIsRotating={setIsRotating}
             currentStage={currentStage}
             setCurrentStage={setCurrentStage}
-          /> */}
-          {/* <Plane
+          />
+          <Sky isRotating={isRotating} />
+
+          <Plane
             position={planePosition}
             scale={planeScale}
             isRotating={isRotating}
             rotation={[0, 20.2, 0]}
-          /> */}
-          <VisionPro
-            position={islandPosition}
-            scale={islandScale}
-            rotation={islandRotation}
-            isRotating={isRotating}
-            setIsRotating={setIsRotating}
-            currentStage={currentStage}
-            setCurrentStage={setCurrentStage}
           />
         </Suspense>
       </Canvas>
