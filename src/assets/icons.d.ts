@@ -1,0 +1,35 @@
+// icons.d.ts
+declare module "./icons" {
+  export const car: string;
+  export const contact: string;
+  export const css: string;
+  export const estate: string;
+  export const express: string;
+  export const aws: string;
+  export const docker: string;
+  export const kubernetes: string;
+  export const git: string;
+  export const github: string;
+  export const html: string;
+  export const javascript: string;
+  export const linkedin: string;
+  export const mongodb: string;
+  export const motion: string;
+  export const mui: string;
+  export const nextjs: string;
+  export const nodejs: string;
+  export const pricewise: string;
+  export const react: string;
+  export const redux: string;
+  export const sass: string;
+  export const snapgram: string;
+  export const summiz: string;
+  export const tailwindcss: string;
+  export const threads: string;
+  export const typescript: string;
+  export const oasis: string;
+  export const sheffield: string;
+  export const ajou: string;
+  export const myfair: string;
+  export const rfcuny: string;
+}
