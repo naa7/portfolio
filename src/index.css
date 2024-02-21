@@ -169,7 +169,7 @@ body:has(.card[data-color="green"]:hover) {
 .neo-brutalism-blue {
   background: #2b77e7;
   position: relative;
-  border-radius: 10px;
+  border-radius: 1rem;
   border: #2b77e7;
   box-shadow: 0.6vmin 0.6vmin #336cc1, 1vmin 1vmin #0092db, 1vmin 1vmin #0092db,
     0.65vmin 1vmin #0092db, 1vmin 0.65vmin #0092db;
@@ -178,6 +178,7 @@ body:has(.card[data-color="green"]:hover) {
 .neo-brutalism-white {
   background: #fff;
   border: #fff;
+  border-radius: 1rem;
   box-shadow: 0.6vmin 0.6vmin #fff, 1vmin 1vmin #d2e4ff, 1vmin 1vmin #d2e4ff,
     0.65vmin 1vmin #d2e4ff, 1vmin 0.65vmin #d2e4ff;
 }
