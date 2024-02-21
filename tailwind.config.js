@@ -14,6 +14,12 @@ export default {
         blue: {
           500: "#2b77e7",
         },
+        yellow: {
+          500: "#F4D738",
+        },
+        whte: {
+          500: "#F1F1F1",
+        },
       },
       fontFamily: {
         worksans: ["Work Sans", "sans-serif"],
