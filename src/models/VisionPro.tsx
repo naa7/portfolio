@@ -50,9 +50,8 @@ const VisionPro = ({
     e.stopPropagation();
     e.preventDefault();
     setIsRotating(true);
-    let clientX;
     if ("touches" in e) {
-      clientX = e.touches[0].clientX;
+      // const clientX = e.touches[0].clientX;
       lastY.current = e.touches[0].clientY;
     } else {
       lastX.current = e.clientX;
