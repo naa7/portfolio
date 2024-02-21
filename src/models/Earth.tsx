@@ -1,9 +1,8 @@
-import { useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { a } from "@react-spring/three";
 // @ts-ignore
-import islandScene from "../assets/3d/island.glb";
+import earthScene from "../assets/3d/earth.glb";
 
 type Props = {
   position: [number, number, number];
@@ -15,31 +14,38 @@ type Props = {
   setCurrentStage: (value: number | null) => void;
 };
 
-const Island = ({
+const Earth = ({
   isRotating,
   setIsRotating,
   currentStage,
   setCurrentStage,
   ...props
 }: Props) => {
-  const islandRef = useRef<any>();
-  const { nodes, materials } = useGLTF(islandScene) as any;
+  const earthRef = useRef<any>();
+  const { nodes, materials } = useGLTF(earthScene) as any;
   const { gl, viewport } = useThree();
   const lastX = useRef(0);
-  const rotationSpeed = useRef(0);
+  const rotationSpeedX = useRef(0);
   const dampingFactor = 0.95;
+
+  const autoRotationSpeed = 0.0035;
+
+  const handlePointerMoveX = (clientX: number) => {
+    const delta = (clientX - lastX.current) / viewport.width;
+    earthRef.current.rotation.y += delta * 0.01 * Math.PI;
+    lastX.current = clientX;
+    rotationSpeedX.current = delta * 0.01 * Math.PI;
+  };
 
   const handlePointerDown = (e: PointerEvent | TouchEvent) => {
     e.stopPropagation();
     e.preventDefault();
     setIsRotating(true);
-    let clientX;
     if ("touches" in e) {
-      clientX = e.touches[0].clientX;
+      // const clientX = e.touches[0].clientX;
     } else {
-      clientX = (e as PointerEvent).clientX;
+      lastX.current = e.clientX;
     }
-    lastX.current = clientX;
   };
 
   const handlePointerUp = (e: PointerEvent | TouchEvent) => {
@@ -52,26 +58,21 @@ const Island = ({
     e.stopPropagation();
     e.preventDefault();
     if (isRotating) {
-      let clientX;
       if ("touches" in e) {
-        clientX = e.touches[0].clientX;
+        handlePointerMoveX(e.touches[0].clientX);
       } else {
-        clientX = (e as PointerEvent).clientX;
+        handlePointerMoveX(e.clientX);
       }
-      const delta = (clientX - lastX.current) / viewport.width;
-      islandRef.current.rotation.y += delta * 0.01 * Math.PI;
-      lastX.current = clientX;
-      rotationSpeed.current = delta * 0.01 * Math.PI;
     }
   };
 
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === "ArrowLeft") {
       if (!isRotating) setIsRotating(true);
-      islandRef.current.rotation.y += 0.01 * Math.PI;
+      earthRef.current.rotation.y += 0.01 * Math.PI;
     } else if (e.key === "ArrowRight") {
       if (!isRotating) setIsRotating(true);
-      islandRef.current.rotation.y -= 0.01 * Math.PI;
+      earthRef.current.rotation.y -= 0.01 * Math.PI;
     }
   };
 
@@ -81,28 +82,29 @@ const Island = ({
 
   useFrame(() => {
     if (!isRotating) {
-      rotationSpeed.current *= dampingFactor;
-      if (Math.abs(rotationSpeed.current) < 0.001) {
-        rotationSpeed.current = 0;
+      earthRef.current.rotation.y -= autoRotationSpeed;
+      rotationSpeedX.current *= dampingFactor;
+      if (Math.abs(earthRef.current.rotation.y) < 0.0001) {
+        rotationSpeedX.current = 0;
       }
-
-      islandRef.current.rotation.y += rotationSpeed.current;
+      earthRef.current.rotation.y += rotationSpeedX.current;
     } else {
-      const rotation = islandRef.current.rotation.y;
+      earthRef.current.rotation.y += rotationSpeedX.current;
+      const rotation = earthRef.current.rotation.y;
       const normalizedRotation =
         ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
 
       switch (true) {
-        case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
+        case normalizedRotation >= 5 && normalizedRotation <= 6:
           setCurrentStage(4);
           break;
-        case normalizedRotation >= 0.85 && normalizedRotation <= 1.3:
+        case normalizedRotation >= 0 && normalizedRotation <= 2:
           setCurrentStage(3);
           break;
-        case normalizedRotation >= 2.4 && normalizedRotation <= 2.6:
+        case normalizedRotation >= 3 && normalizedRotation <= 4:
           setCurrentStage(2);
           break;
-        case normalizedRotation >= 4.25 && normalizedRotation <= 4.75:
+        case normalizedRotation >= 4.25 && normalizedRotation <= 5:
           setCurrentStage(1);
           break;
         default:
@@ -134,38 +136,21 @@ const Island = ({
     handleKeyDown,
     handleKeyUp,
   ]);
+
   return (
-    <a.group ref={islandRef} {...props}>
+    <group {...props} ref={earthRef}>
       <mesh
-        geometry={nodes.polySurface944_tree_body_0.geometry}
-        material={materials.PaletteMaterial001}
+        geometry={nodes.earth4_blinn1_0.geometry}
+        material={materials.blinn1}
       />
       <mesh
-        geometry={nodes.polySurface945_tree1_0.geometry}
-        material={materials.PaletteMaterial001}
+        castShadow
+        receiveShadow
+        geometry={nodes.earth4_lambert1_0.geometry}
+        material={materials.lambert1}
       />
-      <mesh
-        geometry={nodes.polySurface946_tree2_0.geometry}
-        material={materials.PaletteMaterial001}
-      />
-      <mesh
-        geometry={nodes.polySurface947_tree1_0.geometry}
-        material={materials.PaletteMaterial001}
-      />
-      <mesh
-        geometry={nodes.polySurface948_tree_body_0.geometry}
-        material={materials.PaletteMaterial001}
-      />
-      <mesh
-        geometry={nodes.polySurface949_tree_body_0.geometry}
-        material={materials.PaletteMaterial001}
-      />
-      <mesh
-        geometry={nodes.pCube11_rocks1_0.geometry}
-        material={materials.PaletteMaterial001}
-      />
-    </a.group>
+    </group>
   );
 };
 
-export default Island;
+export default Earth;

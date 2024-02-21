@@ -2,17 +2,13 @@ import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 // @ts-ignore
-// import skyScene from "../assets/3d/sky.glb";
-import skyScene from "../assets/3d/earth.glb";
+import skyScene from "../assets/3d/sky.glb";
 
 type Props = {
-  position: [number, number, number];
-  scale: [number, number, number];
-  rotation: [number, number, number];
   isRotating: boolean;
 };
 
-const Sky = (isRotating: Props) => {
+const Sky = ({ isRotating }: Props) => {
   const skyRef = useRef<any>();
   const sky = useGLTF(skyScene);
 
@@ -21,11 +17,13 @@ const Sky = (isRotating: Props) => {
       skyRef.current.rotation.y += 0.1 * delta;
     } else if (Math.abs(skyRef.current.rotation.y) < 0.0005) {
       skyRef.current.rotation.y = 0;
+    } else {
+      skyRef.current.rotation.y += 0.02 * delta;
     }
   });
 
   return (
-    <mesh ref={skyRef} scale={70}>
+    <mesh ref={skyRef}>
       <primitive object={sky.scene} />
     </mesh>
   );
