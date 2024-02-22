@@ -8,8 +8,9 @@ const Navbar = () => {
         className={({ isActive }) =>
           `${
             isActive
-              ? "text-black border-black bg-[#C4A1FF]"
-              : "text-white border-black bg-[#035de4]"
+              ? "text-black border-black bg-[#C4A1FF] pointer-events-none"
+              : //  translate-y-[3px] translate-x-[3px] shadow-none pointer-events-none
+                "text-white border-black bg-[#035de4]"
           } flex cursor-pointer items-center rounded-full border-2  px-5 py-3 font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none`
         }
       >
@@ -21,7 +22,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             `${
               isActive
-                ? "text-black border-black bg-[#C4A1FF]"
+                ? "text-black border-black bg-[#C4A1FF] pointer-events-none"
                 : "text-white border-black bg-[#035de4]"
             } flex cursor-pointer items-center rounded-full border-2  px-5 py-3 font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none`
           }
@@ -33,7 +34,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             `${
               isActive
-                ? "text-black border-black bg-[#C4A1FF]"
+                ? "text-black border-black bg-[#C4A1FF] pointer-events-none"
                 : "text-white border-black bg-[#035de4]"
             } flex cursor-pointer items-center rounded-full border-2  px-5 py-3 font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none`
           }

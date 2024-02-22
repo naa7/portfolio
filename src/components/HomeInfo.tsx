@@ -15,7 +15,10 @@ type InfoBoxProps = {
 const InfoBox = ({ text, link, btnText }: InfoBoxProps) => (
   <div className="info-box">
     <p className="font-medium sm:text-xl text-center">{text}</p>
-    <Link to={link} className="neo-brutalism-white text-center neo-btn">
+    <Link
+      to={link}
+      className="bg-white border-2 border-[#2b77e7] neo-btn flex cursor-pointer px-5 py-3 shadow-[4px_4px_0px_0px_rgba(0,146,219,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none"
+    >
       {btnText}
       <img src={arrow} alt="arrow" className="w-4 h-4 object-contain" />
     </Link>
