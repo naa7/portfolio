@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import { Suspense } from "react";
 // import emailjs from "@emailjs/browser";
 import Fox from "../models/Fox";
 import { Canvas } from "@react-three/fiber";
@@ -7,9 +7,9 @@ import Loader from "../components/Loader";
 // import Alert from "../components/Alert";
 
 const Contact = () => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [isLoading, setIsLoading] = useState(false);
-  const [currentAnimation, setCurrentAnimation] = useState("idle");
+  // const [form, setForm] = useState({ name: "", email: "", message: "" });
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [currentAnimation, setCurrentAnimation] = useState("idle");
 
   // const { alert, showAlert, hideAlert } = useAlert();
 
@@ -54,8 +54,8 @@ const Contact = () => {
   //     });
   // };
 
-  const handleFocus = () => setCurrentAnimation("walk");
-  const handleBlur = () => setCurrentAnimation("idle");
+  // const handleFocus = () => setCurrentAnimation("walk");
+  // const handleBlur = () => setCurrentAnimation("idle");
   return (
     <section className="relative flex lg:flex-row flex-col max-container">
       {/* {alert.show && <Alert {...alert} />} */}
@@ -72,10 +72,10 @@ const Contact = () => {
             name="name"
             className="input"
             placeholder="your name"
-            value={form.name}
+            // value={form.name}
             // onChange={handleChange}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
+            // onFocus={handleFocus}
+            // onBlur={handleBlur}
           />
 
           <label className="text-black-500 font-semibold">Email</label>
@@ -84,10 +84,10 @@ const Contact = () => {
             name="email"
             className="input"
             placeholder="your email"
-            value={form.email}
+            // value={form.email}
             // onChange={handleChange}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
+            // onFocus={handleFocus}
+            // onBlur={handleBlur}
           />
 
           <label className="text-black-500 font-semibold">Message</label>
@@ -96,19 +96,19 @@ const Contact = () => {
             className="textarea"
             rows={4}
             placeholder="your message"
-            value={form.message}
+            // value={form.message}
             // onChange={handleChange}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
+            // onFocus={handleFocus}
+            // onBlur={handleBlur}
           />
           <button
             className="btn"
             type="submit"
-            disabled={isLoading}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
+            // disabled={isLoading}
+            // onFocus={handleFocus}
+            // onBlur={handleBlur}
           >
-            {isLoading ? "Sending..." : "Send"}
+            {/* {isLoading ? "Sending..." : "Send"} */}
           </button>
         </form>
       </div>

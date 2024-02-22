@@ -1,11 +1,9 @@
-import React from "react";
-
 type Props = {
   type: string;
   message: string;
 };
 
-const Alert = ({ type, message, ...props }: Props) => {
+const Alert = ({ type, message }: Props) => {
   return (
     <div className="absolute top-10 left-0 right-0 flex justify-center items-center">
       <div

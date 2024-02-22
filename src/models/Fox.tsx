@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useGLTF, useAnimations } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 // @ts-ignore
 import foxScene from "../assets/3d/fox.glb";
 
@@ -11,8 +11,8 @@ type Props = {
 
 const Fox = (props: Props) => {
   const foxRef = useRef<any>();
-  const { nodes, materials, animations } = useGLTF(foxScene);
-  const { actions } = useAnimations(animations, foxRef);
+  const { nodes, materials } = useGLTF(foxScene);
+  //   const { actions } = useAnimations(animations, foxRef);
 
   //   useEffect(() => {
   //     console.log(actions);
