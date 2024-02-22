@@ -10,8 +10,8 @@ const Navbar = () => {
             isActive
               ? "text-black border-black bg-[#C4A1FF] pointer-events-none"
               : //  translate-y-[3px] translate-x-[3px] shadow-none pointer-events-none
-                "text-white border-black bg-[#035de4]"
-          } flex cursor-pointer items-center rounded-full border-2  px-5 py-3 font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none`
+                "text-white border-black blue-gradient"
+          } flex cursor-pointer items-center rounded-full border-2 px-3 py-2 font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none`
         }
       >
         NA
@@ -23,8 +23,8 @@ const Navbar = () => {
             `${
               isActive
                 ? "text-black border-black bg-[#C4A1FF] pointer-events-none"
-                : "text-white border-black bg-[#035de4]"
-            } flex cursor-pointer items-center rounded-full border-2  px-5 py-3 font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none`
+                : "text-white border-black blue-gradient"
+            } flex cursor-pointer items-center rounded-full border-2 px-4 py-2 font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none`
           }
         >
           About
@@ -35,8 +35,8 @@ const Navbar = () => {
             `${
               isActive
                 ? "text-black border-black bg-[#C4A1FF] pointer-events-none"
-                : "text-white border-black bg-[#035de4]"
-            } flex cursor-pointer items-center rounded-full border-2  px-5 py-3 font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none`
+                : "text-white border-black blue-gradient"
+            } flex cursor-pointer items-center rounded-full border-2 px-3 py-2 font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none`
           }
         >
           Projects

@@ -3,6 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 // @ts-ignore
 import earthScene from "../assets/3d/earth.glb";
+import { a } from "@react-spring/three";
 
 type Props = {
   position: [number, number, number];
@@ -27,7 +28,6 @@ const Earth = ({
   const lastX = useRef(0);
   const rotationSpeedX = useRef(0);
   const dampingFactor = 0.95;
-
   const autoRotationSpeed = 0.0035;
 
   const handlePointerMoveX = (clientX: number) => {
@@ -41,11 +41,6 @@ const Earth = ({
     e.stopPropagation();
     e.preventDefault();
     setIsRotating(true);
-    if ("touches" in e) {
-      // const clientX = e.touches[0].clientX;
-    } else {
-      lastX.current = e.clientX;
-    }
   };
 
   const handlePointerUp = (e: PointerEvent | TouchEvent) => {
@@ -70,9 +65,11 @@ const Earth = ({
     if (e.key === "ArrowLeft") {
       if (!isRotating) setIsRotating(true);
       earthRef.current.rotation.y += 0.01 * Math.PI;
+      rotationSpeedX.current = 0.0125 * Math.PI;
     } else if (e.key === "ArrowRight") {
       if (!isRotating) setIsRotating(true);
       earthRef.current.rotation.y -= 0.01 * Math.PI;
+      rotationSpeedX.current = -0.0125 * Math.PI;
     }
   };
 
@@ -88,28 +85,26 @@ const Earth = ({
         rotationSpeedX.current = 0;
       }
       earthRef.current.rotation.y += rotationSpeedX.current;
-    } else {
-      earthRef.current.rotation.y += rotationSpeedX.current;
-      const rotation = earthRef.current.rotation.y;
-      const normalizedRotation =
-        ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+    }
+    const rotation = earthRef.current.rotation.y;
 
-      switch (true) {
-        case normalizedRotation >= 5 && normalizedRotation <= 6:
-          setCurrentStage(4);
-          break;
-        case normalizedRotation >= 0 && normalizedRotation <= 2:
-          setCurrentStage(3);
-          break;
-        case normalizedRotation >= 3 && normalizedRotation <= 4:
-          setCurrentStage(2);
-          break;
-        case normalizedRotation >= 4.25 && normalizedRotation <= 5:
-          setCurrentStage(1);
-          break;
-        default:
-          setCurrentStage(null);
-      }
+    const normalizedRotation =
+      ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+    switch (true) {
+      case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
+        setCurrentStage(4);
+        break;
+      case normalizedRotation >= 0.85 && normalizedRotation <= 1.3:
+        setCurrentStage(3);
+        break;
+      case normalizedRotation >= 2 && normalizedRotation <= 3:
+        setCurrentStage(2);
+        break;
+      case normalizedRotation >= 4.25 && normalizedRotation <= 4.75:
+        setCurrentStage(1);
+        break;
+      default:
+        setCurrentStage(null);
     }
   });
 
@@ -138,7 +133,7 @@ const Earth = ({
   ]);
 
   return (
-    <group {...props} ref={earthRef}>
+    <a.group {...props} ref={earthRef}>
       <mesh
         geometry={nodes.earth4_blinn1_0.geometry}
         material={materials.blinn1}
@@ -149,7 +144,7 @@ const Earth = ({
         geometry={nodes.earth4_lambert1_0.geometry}
         material={materials.lambert1}
       />
-    </group>
+    </a.group>
   );
 };
 

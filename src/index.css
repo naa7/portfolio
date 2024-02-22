@@ -38,6 +38,10 @@ body:has(.card[data-color="green"]:hover) {
     @apply bg-gradient-to-r from-[#00c6ff] to-[#0072ff] bg-clip-text text-transparent;
   }
 
+  .blue-gradient {
+    @apply bg-gradient-to-r from-[#13b1dd] to-[#0072ff];
+  }
+
   .input {
     @apply bg-white border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mt-2.5 font-normal shadow-card;
   }
@@ -128,6 +132,10 @@ body:has(.card[data-color="green"]:hover) {
 
 .block-container .btn-back-blue {
   background: linear-gradient(135deg, #0061ff -20%, #60efff 120%);
+}
+
+.block-container .btn-back-skyblue {
+  background: linear-gradient(135deg, #87ceeb -20%, #60efff 120%);
 }
 
 .block-container .btn-back-orange {

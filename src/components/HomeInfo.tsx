@@ -17,7 +17,7 @@ const InfoBox = ({ text, link, btnText }: InfoBoxProps) => (
     <p className="font-medium sm:text-xl text-center">{text}</p>
     <Link
       to={link}
-      className="bg-white border-2 border-[#2b77e7] neo-btn flex cursor-pointer px-5 py-3 shadow-[4px_4px_0px_0px_rgba(0,146,219,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none"
+      className="bg-white  neo-btn flex cursor-pointer px-5 py-3 shadow-[4px_4px_0px_0px_rgba(43,119,231,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none"
     >
       {btnText}
       <img src={arrow} alt="arrow" className="w-4 h-4 object-contain" />
@@ -60,8 +60,6 @@ const renderContent: {
 const HomeInfo = ({ currentStage }: Props) => {
   if (currentStage !== null) {
     return renderContent[currentStage] || null;
-  } else {
-    return null;
   }
 };
 

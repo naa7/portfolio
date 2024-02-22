@@ -9,7 +9,7 @@ import CTA from "../components/CTA";
 
 const About = () => {
   return (
-    <section className="max-container">
+    <section className="max-container ">
       <h1 className="head-text">
         Hello, I am{" "}
         <span className="blue-gradient_text font-semibold drop-shadow">
@@ -19,11 +19,15 @@ const About = () => {
 
       <div className="mt-5 flex flex-col gap-3 text-slate-500 ">
         <p>
-          Software Engineer with a passion for building web applications. I
-          specialize in fullstack development and have experience working with
-          modern frameworks like React and Next.js. I am also familiar with
-          back-end technologies like Node.js and Express. as well as cloud
-          services like Docker, Vercel,and Render.
+          A Software and AI Engineer deeply committed to crafting impactful web
+          applications, I bring expertise in full-stack development, with
+          proficiency in modern frameworks like React and Next.js. Additionally,
+          my skills extend to backend technologies such as Node.js and Express.
+          Leveraging hands-on experience in cloud services like Vercel and
+          Render, I ensure seamless deployment and scalability. In my role as an
+          AI Engineer, I integrate machine learning and data science techniques
+          to enhance application intelligence and functionality, driving
+          innovation and excellence.
         </p>
       </div>
 
@@ -42,7 +46,9 @@ const About = () => {
                     alt={skill.name}
                     className="w-1/2 h-1/2 object-contain"
                   />
-                  <p className="mt-3 text-sm font-semibold">{skill.name}</p>
+                  <p className="mt-3 text-sm font-semibold text-center">
+                    {skill.name}
+                  </p>
                 </div>
               </div>
             </div>
@@ -55,7 +61,7 @@ const About = () => {
         <div className="mt-5 flex flex-col gap-3 text-slate-500 "></div>
 
         <div className="mt-12 flex">
-          <VerticalTimeline>
+          <VerticalTimeline lineColor="#7a8593">
             {experiences.map((experience, index) => (
               <VerticalTimelineElement
                 key={index}
@@ -66,7 +72,7 @@ const About = () => {
                     <img
                       src={experience.icon}
                       alt={experience.company_name}
-                      className="w-[80%] h-[80%] object-contain"
+                      className="w-[100%] h-[100%] rounded-full object-contain"
                     />
                   </div>
                 }
