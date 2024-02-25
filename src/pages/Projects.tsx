@@ -14,10 +14,19 @@ const Projects = () => {
         </span>
       </h1>
 
-      <div className="mt-5 flex flex-col gap-3 text-slate-500 ">
+      <div className="mt-5 flex flex-col gap-3 text-slate-500 text-justify">
         <p>
-          Here are some of the projects I have worked on. You can find more
-          projects on click the link to check out.
+          Welcome to my projects showcase! This section offers a glimpse into
+          some of the remarkable projects I've had the pleasure of working on.
+          Each project represents a unique opportunity where I've applied my
+          skills, creativity, and expertise to deliver exceptional results. From
+          web applications to AI implementations, and from Bash scripting to
+          Unity game development, each project reflects my passion for
+          innovation and dedication to excellence. Feel free to explore these
+          projects to gain insight into my capabilities and the quality of work
+          I strive to achieve. If you're interested in discovering more about my
+          projects, simply click the links provided to explore additional
+          projects and dive deeper into my professional journey.
         </p>
       </div>
 

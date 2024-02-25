@@ -21,7 +21,6 @@ const Plane = ({ isRotating, ...props }: Props) => {
     object.rotation.x = 0.5;
     object.rotation.z = 0.75;
   };
-
   useEffect(() => {
     actions["Take 001"].play();
     setRotation(planeRef.current);

@@ -28,19 +28,14 @@ const Earth = ({
   const lastX = useRef(0);
   const rotationSpeedX = useRef(0);
   const dampingFactor = 0.95;
-  const autoRotationSpeed = 0.0035;
-
-  const handlePointerMoveX = (clientX: number) => {
-    const delta = (clientX - lastX.current) / viewport.width;
-    earthRef.current.rotation.y += delta * 0.01 * Math.PI;
-    lastX.current = clientX;
-    rotationSpeedX.current = delta * 0.01 * Math.PI;
-  };
+  const autoRotationSpeed = -0.0075;
 
   const handlePointerDown = (e: PointerEvent | TouchEvent) => {
     e.stopPropagation();
     e.preventDefault();
     setIsRotating(true);
+    const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+    lastX.current = clientX;
   };
 
   const handlePointerUp = (e: PointerEvent | TouchEvent) => {
@@ -61,6 +56,13 @@ const Earth = ({
     }
   };
 
+  const handlePointerMoveX = (clientX: number) => {
+    const delta = (clientX - lastX.current) / viewport.width;
+    earthRef.current.rotation.y += delta * 0.01 * Math.PI;
+    lastX.current = clientX;
+    rotationSpeedX.current = delta * 0.01 * Math.PI;
+  };
+
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === "ArrowLeft") {
       if (!isRotating) setIsRotating(true);
@@ -79,17 +81,17 @@ const Earth = ({
 
   useFrame(() => {
     if (!isRotating) {
-      earthRef.current.rotation.y -= autoRotationSpeed;
+      earthRef.current.rotation.y += autoRotationSpeed;
       rotationSpeedX.current *= dampingFactor;
       if (Math.abs(earthRef.current.rotation.y) < 0.0001) {
         rotationSpeedX.current = 0;
       }
       earthRef.current.rotation.y += rotationSpeedX.current;
     }
-    const rotation = earthRef.current.rotation.y;
 
     const normalizedRotation =
-      ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+      ((earthRef.current.rotation.y % (2 * Math.PI)) + 2 * Math.PI) %
+      (2 * Math.PI);
     switch (true) {
       case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
         setCurrentStage(4);

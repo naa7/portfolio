@@ -14,10 +14,12 @@ type InfoBoxProps = {
 
 const InfoBox = ({ text, link, btnText }: InfoBoxProps) => (
   <div className="info-box">
-    <p className="font-medium sm:text-xl text-center">{text}</p>
+    <p className="font-medium text-sm sm:text-lg md:text-xl text-center">
+      {text}
+    </p>
     <Link
       to={link}
-      className="bg-white  neo-btn flex cursor-pointer px-5 py-3 shadow-[4px_4px_0px_0px_rgba(43,119,231,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none"
+      className="bg-white font-semibold text-sm sm:text-md md:text-base neo-btn flex cursor-pointer px-2 py-4 transition-all shadow-[4px_4px_0px_0px_rgba(43,119,231,0.7)] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none"
     >
       {btnText}
       <img src={arrow} alt="arrow" className="w-4 h-4 object-contain" />
@@ -29,7 +31,7 @@ const renderContent: {
   [key in NonNullable<Props["currentStage"]>]: JSX.Element;
 } = {
   1: (
-    <h1 className="sm: text-xl sm:leading-snug text-center neo-brutalism-blue py-4 px-8 text-white mx-5">
+    <h1 className="text-md sm:text-xl sm:leading-snug text-center neo-brutalism-blue py-2 px-4 sm:py-3 sm:px-6 text-white mx-5">
       Hi, I am <span className="font-semibold">Najeeb</span>
       <br />A Software and AI Engineer
     </h1>

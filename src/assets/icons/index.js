@@ -55,6 +55,8 @@ import chart from "./chart.svg";
 import balloon from "./balloon.svg";
 import lock from "./lock.svg";
 import docker from "./docker.svg";
+import portfolio from "./portfolio.svg";
+import email from "./email.svg";
 
 export {
   css,
@@ -114,4 +116,6 @@ export {
   balloon,
   lock,
   docker,
+  portfolio,
+  email,
 };

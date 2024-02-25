@@ -5,22 +5,22 @@ type Props = {
 
 const Alert = ({ type, message }: Props) => {
   return (
-    <div className="absolute top-10 left-0 right-0 flex justify-center items-center">
-      <div
-        className={`${
-          type === "danger" ? "text-red-500" : "text-green-500"
-        } p-2 text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex items-center`}
-        role="alert"
+    <div
+      className={`${
+        type === "error" ? "text-red-500" : "text-green-500"
+      } p-2 text-white sm:text-md text-xs leading-none lg:rounded-full flex lg:inline-flex items-center`}
+      role="alert"
+    >
+      <p
+        className={`flex rounded-full ${
+          type === "error" ? "bg-red-500" : "bg-green-500"
+        } uppercase px-2 py-1 text-xs font-semibold mr-3`}
       >
-        <p
-          className={`flex rounded-full ${
-            type === "danger" ? "bg-red-500" : "bg-green-500"
-          } uppercase px-2 py-1 text-xs font-semibold mr-3`}
-        >
-          {type === "danger" ? "Failed" : "Success"}
-        </p>
-        <p className="mr-2 text-left">{message}</p>
-      </div>
+        {type === "error" ? "Error" : "Success"}
+      </p>
+      <p className="mr-2 sm:text-base text-xs text-left text-black">
+        {message}
+      </p>
     </div>
   );
 };
